@@ -1,13 +1,11 @@
 import Navbar from "@/components/Navbar";
-import Hero from "@/components/Hero";
 import About from "@/components/About";
 
-export default function Home() {
+export default function AboutPage() {
   return (
     <main className="min-h-screen bg-white">
       <Navbar />
-      <Hero />
       <About />
     </main>
   );
-}
+} 

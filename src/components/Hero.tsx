@@ -23,7 +23,7 @@ export default function Hero() {
                 Get Started
               </Link>
               <Link 
-                href="/learn-more" 
+                href="/about" 
                 className="px-6 py-3 rounded-full bg-emerald-500 text-white hover:bg-emerald-600 transition-colors"
               >
                 Learn More
