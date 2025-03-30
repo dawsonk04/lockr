@@ -17,7 +17,7 @@ export default function Hero() {
             </p>
             <div className="pt-4 flex flex-wrap gap-4">
               <Link 
-                href="/get-started" 
+                href="/pricing" 
                 className="px-6 py-3 rounded-full bg-emerald-500 text-white hover:bg-emerald-600 transition-colors"
               >
                 Get Started
