@@ -8,10 +8,10 @@ export default function Hero() {
         <div className="flex flex-col md:flex-row items-center gap-12">
           {/* Left section with text */}
           <div className="flex-1 space-y-6">
-            <h1 className="text-4xl md:text-5xl font-bold leading-tight">
+            <h1 className="text-4xl md:text-5xl text-black font-bold leading-tight">
               Secure Your Digital Life with Lockr
             </h1>
-            <p className="text-lg text-gray-600 md:pr-12">
+            <p className="text-lg text-black md:pr-12">
               The all-in-one password management solution that keeps your credentials safe and accessible wherever you go.
             </p>
             <div className="pt-4 flex flex-wrap gap-4">
@@ -23,7 +23,7 @@ export default function Hero() {
               </Link>
               <Link 
                 href="/learn-more" 
-                className="px-6 py-3 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
+                className="px-6 py-3 rounded-full bg-emerald-500 text-white hover:bg-emerald-600 transition-colors"
               >
                 Learn More
               </Link>

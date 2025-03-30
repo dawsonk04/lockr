@@ -15,7 +15,7 @@ export default function Navbar() {
             <Link 
               key={item} 
               href={`/${item.toLowerCase().replace(' ', '-')}`}
-              className="px-4 py-2 rounded-full bg-gray-50 hover:bg-gray-100 transition-colors"
+              className="px-4 py-2 rounded-full bg-emerald-100 text-emerald-600 hover:bg-emerald-200 transition-colors"
             >
               {item}
             </Link>
@@ -26,7 +26,7 @@ export default function Navbar() {
         <div className="flex items-center space-x-3">
           <Link 
             href="/login" 
-            className="px-4 py-2 rounded-full bg-gray-50 hover:bg-gray-100 transition-colors"
+            className="px-4 py-2 rounded-full bg-emerald-100 text-emerald-600 hover:bg-emerald-200 transition-colors"
           >
             Login
           </Link>
