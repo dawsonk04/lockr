@@ -1,12 +1,11 @@
 import Navbar from "@/components/Navbar";
-import Hero from "@/components/Hero";
-import About from "@/components/About";
+import Pricing from "@/components/Pricing";
 
-export default function Home() {
+export default function PricingPage() {
   return (
     <main className="min-h-screen bg-white">
       <Navbar />
-      <Hero />
+      <Pricing />
     </main>
   );
-}
+} 

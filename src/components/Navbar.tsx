@@ -18,7 +18,7 @@ export default function Navbar() {
             About
           </Link>
           <Link 
-            href="#" 
+            href="/pricing" 
             className="px-4 py-2 rounded-full bg-emerald-100 text-emerald-600 hover:bg-emerald-200 transition-colors"
           >
             Pricing
