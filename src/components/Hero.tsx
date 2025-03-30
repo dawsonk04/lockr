@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import heroImage from '../img/hero-image.png';
 
 export default function Hero() {
   return (
@@ -32,13 +33,14 @@ export default function Hero() {
           
           {/* Right section with image */}
           <div className="flex-1 flex justify-center">
-            <div className="relative w-full max-w-md h-[400px]">
+            <div className="relative w-full max-w-md h-[400px] transition-transform duration-500 hover:scale-105">
               <Image
-                src="/hero-image.jpg"
+                src={heroImage}
                 alt="Lockr App"
                 fill
                 style={{ objectFit: 'contain' }}
                 priority
+                className="transition-opacity duration-300 ease-in-out"
               />
             </div>
           </div>
