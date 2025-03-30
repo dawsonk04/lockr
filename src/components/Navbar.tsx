@@ -24,7 +24,7 @@ export default function Navbar() {
             Pricing
           </Link>
           <Link 
-            href="#" 
+            href="/download" 
             className="px-4 py-2 rounded-full bg-emerald-100 text-emerald-600 hover:bg-emerald-200 transition-colors"
           >
             Download
