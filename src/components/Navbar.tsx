@@ -30,7 +30,7 @@ export default function Navbar() {
             Download
           </Link>
           <Link 
-            href="#" 
+            href="/use-case" 
             className="px-4 py-2 rounded-full bg-emerald-100 text-emerald-600 hover:bg-emerald-200 transition-colors"
           >
             Use Case
