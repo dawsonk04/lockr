@@ -28,6 +28,12 @@ export default function LoginForm() {
         throw new Error(data.message || 'Login failed');
       }
       
+      const data = await response.json();
+      
+      // Store the session data
+      localStorage.setItem('user', JSON.stringify(data.user));
+      localStorage.setItem('token', data.token);
+      
       // Redirect to dashboard
       window.location.href = '/dashboard';
     } catch (err) {
@@ -38,8 +44,7 @@ export default function LoginForm() {
   };
 
   const handleGoogleLogin = () => {
-    // Will be implemented with actual OAuth flow
-    window.location.href = '/api/auth/google';
+    window.location.href = `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/auth/google`;
   };
 
   return (

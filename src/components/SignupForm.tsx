@@ -2,7 +2,6 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 
 export default function SignupForm() {
   const [email, setEmail] = useState('');
@@ -39,8 +38,7 @@ export default function SignupForm() {
   };
 
   const handleGoogleSignup = () => {
-    // Will be implemented with actual OAuth flow
-    window.location.href = '/api/auth/google';
+    window.location.href = `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/auth/google`;
   };
 
   return (

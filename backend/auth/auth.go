@@ -25,6 +25,10 @@ type AuthResponse struct {
 	Success bool   `json:"success"`
 	Message string `json:"message"`
 	Token   string `json:"token,omitempty"`
+	User    struct {
+		ID    string `json:"id"`
+		Email string `json:"email"`
+	} `json:"user,omitempty"`
 }
 
 // NewHandler creates a new authentication handler
@@ -145,21 +149,39 @@ func (h *Handler) Login(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Forward the response status
+	// Parse the response to get user information
+	var supabaseResp struct {
+		AccessToken string `json:"access_token"`
+		User        struct {
+			ID    string `json:"id"`
+			Email string `json:"email"`
+		} `json:"user"`
+	}
+
+	if err := json.Unmarshal(body, &supabaseResp); err != nil {
+		respondWithError(w, "Error parsing response", http.StatusInternalServerError)
+		return
+	}
+
+	// Create our response
+	authResp := AuthResponse{
+		Success: true,
+		Message: "Login successful",
+		Token:   supabaseResp.AccessToken,
+		User:    supabaseResp.User,
+	}
+
+	// Send the response
 	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(resp.StatusCode)
-	w.Write(body)
+	w.WriteHeader(http.StatusOK)
+	json.NewEncoder(w).Encode(authResp)
 }
 
 // GoogleAuth initiates Google OAuth authentication
 func (h *Handler) GoogleAuth(w http.ResponseWriter, r *http.Request) {
-	// We'll redirect to Supabase OAuth URL for Google
+	// Redirect to Supabase OAuth URL for Google
 	authURL := fmt.Sprintf("%s/auth/v1/authorize?provider=google", h.supabaseURL)
-
-	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(map[string]string{
-		"url": authURL,
-	})
+	http.Redirect(w, r, authURL, http.StatusTemporaryRedirect)
 }
 
 // Helper function to respond with an error
