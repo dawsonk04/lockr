@@ -23,12 +23,15 @@ export default function LoginForm() {
         body: JSON.stringify({ email, password }),
       });
       
+      const data = await response.json();
+      
       if (!response.ok) {
-        const data = await response.json();
         throw new Error(data.message || 'Login failed');
       }
       
-      const data = await response.json();
+      if (!data.success) {
+        throw new Error(data.message || 'Login failed');
+      }
       
       // Store the session data
       localStorage.setItem('user', JSON.stringify(data.user));
@@ -37,6 +40,7 @@ export default function LoginForm() {
       // Redirect to dashboard
       window.location.href = '/dashboard';
     } catch (err) {
+      console.error('Login error:', err);
       setError(err instanceof Error ? err.message : 'An error occurred during login');
     } finally {
       setIsLoading(false);

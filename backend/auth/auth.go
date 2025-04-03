@@ -117,7 +117,7 @@ func (h *Handler) Login(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Create auth request to Supabase
-	reqURL := fmt.Sprintf("%s/auth/v1/token?grant_type=password", h.supabaseURL)
+	reqURL := fmt.Sprintf("%s/auth/v1/signin", h.supabaseURL)
 	reqBody, _ := json.Marshal(map[string]string{
 		"email":    user.Email,
 		"password": user.Password,
@@ -146,6 +146,20 @@ func (h *Handler) Login(w http.ResponseWriter, r *http.Request) {
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {
 		respondWithError(w, "Error reading response", http.StatusInternalServerError)
+		return
+	}
+
+	// If the response is not OK, forward the error message from Supabase
+	if resp.StatusCode != http.StatusOK {
+		var errorResp struct {
+			Error   string `json:"error"`
+			Message string `json:"message"`
+		}
+		if err := json.Unmarshal(body, &errorResp); err == nil {
+			respondWithError(w, errorResp.Message, resp.StatusCode)
+			return
+		}
+		respondWithError(w, "Authentication failed", resp.StatusCode)
 		return
 	}
 
